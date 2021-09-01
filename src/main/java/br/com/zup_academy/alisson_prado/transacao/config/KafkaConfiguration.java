@@ -1,6 +1,7 @@
 package br.com.zup_academy.alisson_prado.transacao.config;
 
-import br.com.zup_academy.alisson_prado.transacao.dto.EventoDeTransacaoDto;
+
+import br.com.zup_academy.alisson_prado.transacao.dto.TransacaoDto;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -36,16 +37,16 @@ public class KafkaConfiguration {
     }
 
     @Bean
-    public ConsumerFactory<String, EventoDeTransacaoDto> transactionConsumerFactory() {
+    public ConsumerFactory<String, TransacaoDto> transactionConsumerFactory() {
         StringDeserializer stringDeserializer = new StringDeserializer();
-        JsonDeserializer<EventoDeTransacaoDto> jsonDeserializer = new JsonDeserializer<>(EventoDeTransacaoDto.class, false);
+        JsonDeserializer<TransacaoDto> jsonDeserializer = new JsonDeserializer<>(TransacaoDto.class, false);
 
         return new DefaultKafkaConsumerFactory<>(consumerConfiguration(), stringDeserializer, jsonDeserializer);
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, EventoDeTransacaoDto> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, EventoDeTransacaoDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, TransacaoDto> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, TransacaoDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(transactionConsumerFactory());
 
         return factory;
