@@ -1,6 +1,8 @@
 package br.com.zup_academy.alisson_prado.transacao.dto;
 
 import br.com.zup_academy.alisson_prado.transacao.model.Cartao;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CartaoDto {
     private String id;
@@ -9,7 +11,8 @@ public class CartaoDto {
     public CartaoDto() {
     }
 
-    public CartaoDto(String id, String email) {
+    @JsonCreator
+    public CartaoDto(@JsonProperty("id") String id,@JsonProperty("email") String email) {
         this.id = id;
         this.email = email;
     }

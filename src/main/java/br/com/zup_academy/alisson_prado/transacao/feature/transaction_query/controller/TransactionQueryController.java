@@ -21,7 +21,7 @@ public class TransactionQueryController {
         this.repository = repository;
     }
 
-    @GetMapping("/api/vi/cartoes/{idCartao}/transacoes")
+    @GetMapping("/api/v1/cartoes/{idCartao}/transacoes")
     public ResponseEntity<?> findLast10(@PathVariable String idCartao, @PageableDefault(sort = "efetivadaEm",
             direction = Sort.Direction.DESC,
             page = 0,

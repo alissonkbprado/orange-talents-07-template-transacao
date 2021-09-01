@@ -1,6 +1,8 @@
 package br.com.zup_academy.alisson_prado.transacao.dto;
 
 import br.com.zup_academy.alisson_prado.transacao.model.Estabelecimento;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class EstabelecimentoDto {
 
@@ -11,7 +13,8 @@ public class EstabelecimentoDto {
     public EstabelecimentoDto() {
     }
 
-    public EstabelecimentoDto(String nome, String cidade, String endereco) {
+    @JsonCreator
+    public EstabelecimentoDto(@JsonProperty("nome") String nome,@JsonProperty("cidade")  String cidade,@JsonProperty("endereco")  String endereco) {
         this.nome = nome;
         this.cidade = cidade;
         this.endereco = endereco;
