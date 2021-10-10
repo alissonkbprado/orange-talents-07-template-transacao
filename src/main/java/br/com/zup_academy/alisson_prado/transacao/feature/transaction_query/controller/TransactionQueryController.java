@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +27,9 @@ public class TransactionQueryController {
     public ResponseEntity<?> findLast10(@PathVariable String idCartao, @PageableDefault(sort = "efetivadaEm",
             direction = Sort.Direction.DESC,
             page = 0,
-            size = 10) Pageable pagination){
+            size = 10) Pageable pagination,@AuthenticationPrincipal Jwt jwt){
+
+        System.out.println(jwt.getClaimAsString("email"));
 
         Page<Transacao> transacaoList = repository.findAll(pagination);
 
